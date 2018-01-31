@@ -1,0 +1,59 @@
+{
+  "name": "userCourse",
+  "description": "Szkolenie użytkownika|Szkolenia użytkownika",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+   
+    "TimeStamp": true
+  },
+  "properties": {
+    "courseId": {
+      "type": "number",
+      "id": true,
+      "generated": false
+    },
+    "userId": {
+      "type": "number",
+      "id": true,
+      "generated": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "course": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": "courseId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

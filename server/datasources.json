@@ -1,0 +1,59 @@
+{
+  "mssql2008": {
+    "host": "localhost",
+    "port": 50636,
+    "database": "tcmanager",
+    "password": "ewidencja",
+    "name": "mssql2008",
+    "connector": "mssql",
+    "user": "usermme"
+  },
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "pluton.ctinet.pl",
+        "secure": false,
+        "port": 25,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "szkolenia@mmpoland.pl",
+          "pass": "mmpoland.szkolenia"
+        }
+      }
+    ]
+  },
+  "media": {
+    "name": "media",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage",
+    "allowedContentTypes": [
+      "image/jpg",
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/tiff",
+      "application/pdf",
+      "application/x-pdf",
+      "application/acrobat",
+      "applications/vnd.pdf",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "text/plain"
+    ],
+    "maxFileSize": 20000000
+  },
+  "tcm": {
+    "name": "tcm",
+    "connector": "memory"
+  }
+}

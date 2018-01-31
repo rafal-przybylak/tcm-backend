@@ -1,0 +1,76 @@
+{
+  "name": "test",
+  "description": "Egzamin|Egazaminy",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SoftDelete" : true,
+    "TimeStamp": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "title": "Nazwa"
+    },
+    "desc": {
+      "type": "string",
+      "title": "Opis"
+    },
+    "courseId": {
+      "type": "number",
+      "required": true
+    },
+    "required": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Wymagany"
+    },
+    "startDt": {
+      "type": "date",
+      "required": true,
+      "title": "Data rozpoczęcia"
+    },
+    "expireDt": {
+      "type": "date",
+      "required": true,
+      "title": "Data zakńczenia"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "course": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": "courseId"
+    },
+    "testQuestions": {
+      "type": "hasMany",
+      "model": "testQuestion",
+      "foreignKey": "testId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../node_modules/loopback-ds-timestamp-mixin",
+      "../common/mixins",
+      "./mixins",
+      "../node_modules/loopback-softdelete-mixin2"
+    ]
+  },
+  "Email": {
+    "dataSource": "emailDs"
+  },
+  "User": {
+    "dataSource": "mssql2008",
+    "public": false,
+    "description": "Użytkownik",
+    "options": {
+      "emailVerificationRequired": true
+    }
+  },
+  "user": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "mssql2008",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mssql2008",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mssql2008",
+    "public": true,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "mssql2008",
+    "public": false
+  },
+  "role": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "course": {
+    "dataSource": "mssql2008",
+    "public": true,
+    "description": "Szkolenie"
+  },
+  "userCourse": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "userData": {
+    "dataSource": "mssql2008",
+    "public": true,
+    "description": "Dane użytkownika"
+  },
+  "test": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "testQuestion": {
+    "dataSource": "mssql2008",
+    "public": true,
+    "description": "Pytanie egzaminacyjne"
+  },
+  "userAnswer": {
+    "dataSource": "mssql2008",
+    "public": true,
+    "description": "Odpowiedź uczestnika"
+  },
+  "media": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "mediaLink": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "storage": {
+    "dataSource": "media",
+    "public": true
+  }
+}

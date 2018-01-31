@@ -1,0 +1,139 @@
+{
+  "name": "testQuestion",
+  "description": "Pytanie|Pytania",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "mssql": {
+    "schema": "dbo",
+    "table": "testQuestion"
+  },
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SoftDelete" : true,
+    "TimeStamp": true
+  },
+  "properties": {
+    "testId": {
+      "type": "number",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "title": "Nazwa"
+    },
+    "content": {
+      "type": "string",
+      "required": true,
+      "title": "Treść",
+      "mssql": {
+        "columnName": "content",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      }
+    },
+    "isOpen": {
+      "type": "boolean",
+      "required": true,
+      "default": false,
+      "title": "Otwarte"
+    },
+    "category": {
+      "type": [
+        "string"
+      ],
+      "required": false,
+      "title": "Kategoria"
+    },
+    "correctAnswer": {
+      "type": [
+        "string"
+      ],
+      "required": false,
+      "title": "Prawidłowa odpowiedź",
+      "mssql": {
+        "columnName": "correctAnswer",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      }
+    },
+    "ctlType": {
+      "type": "string",
+      "required": true
+    },
+    "ctlDescription": {
+      "type": "string",
+      "required": false,
+      "title": "Opis pytania",
+      "mssql": {
+        "columnName": "ctlDescription",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
+    },
+    "ctlOptions": {
+      "type": [
+        "string"
+      ],
+      "required": false,
+      "title": "Opcje odpowiedzi",
+      "mssql": {
+        "columnName": "ctlOptions",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "test": {
+      "type": "belongsTo",
+      "model": "test",
+      "foreignKey": "testId"
+    },
+    "questonOptions": {
+      "type": "hasMany",
+      "model": "questonOption",
+      "foreignKey": "questionId"
+    },
+    "questonAnswers": {
+      "type": "hasMany",
+      "model": "userAnswer",
+      "foreignKey": "questionId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,192 @@
+{
+  "name": "user",
+  "description": "Użytkownik|Użytkownicy",
+  "plural": "users",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "verifyOptions": {
+    "subject": "Szkolenia MM Poland - dziękujemy za rejestrację",
+    "from": "Szkolenia MM Poland <szkolenia@mmpoland.pl>",
+    "type": "email",
+    "template": "D:/Angular/tcm-backend/server/views/verify.ejs",
+    "redirect": "http://localhost:4200/auth-login",
+    "host": "localhost",
+    "port": "4200",
+    "urlPath": "/auth-mail-confirm"
+  },
+  "scope": {
+    "include": [
+      "roles",
+      "avatar"
+    ]
+  },
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "required": false,
+      "title": "Imię"
+    },
+    "lastName": {
+      "type": "string",
+      "required": false,
+      "title": "Nazwisko"
+    },
+    "passChangeRequired": {
+      "type": "boolean",
+      "title": "Wymagna zmiana hasła"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "courses": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": "userId",
+      "through": "userCourse",
+      "keyThrough": "courseId"
+    },
+    "userData": {
+      "type": "hasOne",
+      "model": "userData",
+      "foreignKey": "userId"
+    },
+    "userAnswers": {
+      "type": "hasMany",
+      "model": "userAnswer",
+      "foreignKey": "userId"
+    },
+    "roles": {
+      "type": "hasMany",
+      "model": "Role",
+      "foreignKey": "principalId",
+      "through": "RoleMapping",
+      "keyThrough": "roleId"
+    },
+    "media": {
+      "type": "hasMany",
+      "model": "media",
+      "foreignKey": ""
+    },
+    "avatar": {
+      "type": "hasOne",
+      "model": "mediaLink",
+      "polymorphic": {
+        "foreignKey": "refId",
+        "discriminator": "refType"
+      },
+      "through": "mediaLink"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "replaceById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__create__userData"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__update__userData"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "requestCode"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "userRoles"
+      ]
+    }
+  ],
+  "methods": {
+    "requestCode": {
+      "accepts": [
+        {
+          "arg": "credentials",
+          "type": "object",
+          "required": true,
+          "properties": {
+            "email": {
+              "type": "string",
+              "required": false
+            },
+            "password": {
+              "type": "string",
+              "required": false
+            }
+          },
+          "http": {
+            "source": "body"
+          }
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ]
+    },
+    "userRoles": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "roles",
+          "type": "array",
+          "root": true,
+          "description": "User roles"
+        }
+      ],
+      "description": "Returns curent user roles",
+      "http": [
+        {
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}
