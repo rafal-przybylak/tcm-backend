@@ -6,28 +6,64 @@
   "options": {
     "validateUpsert": true
   },
+  "mssql": {
+    "schema": "dbo",
+    "table": "userAnswer"
+  },
   "mixins": {
-    "SoftDelete" : true,
+    "SoftDelete": true,
     "TimeStamp": true
   },
   "properties": {
-    "userId": {
+    "userCourseTestId": {
       "type": "number",
-      "required": true
+      "required": true,
+      "title": "Test uczestnika"
     },
+    
     "questionId": {
       "type": "number",
-      "required": true
+      "required": true,
+      "title": "Pytanie"
     },
     "value": {
       "type": [
         "string"
-      ]
+      ],
+      "title": "Odpowiedź",
+      "mssql": {
+        "columnName": "value",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      }
+    },
+    "answerDt": {
+      "type": "date",
+      "required": false,
+      "title": "Data oceny"
+    },
+    "evaluationDt": {
+      "type": "date",
+      "required": false,
+      "title": "Data oceny"
+    },
+    "userId": {
+      "type": "number",
+      "required": false,
+      "title": "Trener oceniający"
+    }, 
+    "score": {
+      "type": "number",
+      "required": false,
+      "title": "Uzyskana ilość punków"
     }
   },
   "validations": [],
   "relations": {
-    "user": {
+    "trainer": {
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "userId"
@@ -36,6 +72,11 @@
       "type": "belongsTo",
       "model": "testQuestion",
       "foreignKey": "questionId"
+    },
+    "userCourseTest": {
+      "type": "belongsTo",
+      "model": "userCourseTest",
+      "foreignKey": "userCourseTestId"
     }
   },
   "acls": [
@@ -47,7 +88,7 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$owner",
+      "principalId": "$authenticated",
       "permission": "ALLOW"
     },
     {

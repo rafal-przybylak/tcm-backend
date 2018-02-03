@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "mixins": {
-    "SoftDelete" : true,
+    "SoftDelete": true,
     "TimeStamp": true
   },
   "properties": {
@@ -20,33 +20,18 @@
       "type": "string",
       "title": "Opis"
     },
-    "courseId": {
+    "maxScore": {
       "type": "number",
-      "required": true
-    },
-    "required": {
-      "type": "boolean",
-      "required": true,
-      "default": true,
-      "title": "Wymagany"
-    },
-    "startDt": {
-      "type": "date",
-      "required": true,
-      "title": "Data rozpoczęcia"
-    },
-    "expireDt": {
-      "type": "date",
-      "required": true,
-      "title": "Data zakńczenia"
+      "required": false,
+      "title": "Maksymalna ilość punków"
     }
   },
   "validations": [],
   "relations": {
-    "course": {
-      "type": "belongsTo",
-      "model": "course",
-      "foreignKey": "courseId"
+    "courseTests": {
+      "type": "hasMany",
+      "model": "courseTest",
+      "foreignKey": "testId"
     },
     "testQuestions": {
       "type": "hasMany",

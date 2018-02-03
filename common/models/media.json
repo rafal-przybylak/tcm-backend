@@ -8,21 +8,29 @@
     "validateUpsert": true
   },
   "mixins": {
-    "SoftDelete" : true,
+    "SoftDelete": true,
     "TimeStamp": true
   },
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "title": "Nazwa"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "title": "Typ"
     },
     "container": {
-      "type": "string"
+      "type": "string",
+      "title": "Katalog"
     },
     "size": {
-      "type": "number"
+      "type": "number",
+      "title": "Rozmiar"
+    },
+    "userId": {
+      "type": "number",
+      "title": "Właściciel"
     }
   },
   "validations": [],
@@ -30,6 +38,11 @@
     "user": {
       "type": "belongsTo",
       "model": "user",
+      "foreignKey": ""
+    },
+    "courses": {
+      "type": "hasMany",
+      "model": "course",
       "foreignKey": ""
     }
   },

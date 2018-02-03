@@ -44,7 +44,8 @@ export class <%- modelName %> implements <%- modelName %>Interface {
         "<%= prop %>": {
           name: '<%= prop %>',
           type: '<%- buildPropertyType( model.properties[prop] ) %>',
-          title:'<%- model.properties[prop].title %>'
+          title:'<%- model.properties[prop].title %>',
+          <% if ( model.properties[prop].required ) { %>required: true <% } %>
           <% if ( model.properties[prop].hasOwnProperty( "default" ) ) { %>,
           default: <%- buildPropertyDefaultValue( model.properties[prop] ) %><% } %>
         },<% } %>

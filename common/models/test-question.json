@@ -3,21 +3,32 @@
   "description": "Pytanie|Pytania",
   "base": "PersistedModel",
   "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
   "mssql": {
     "schema": "dbo",
     "table": "testQuestion"
   },
-  "options": {
-    "validateUpsert": true
-  },
   "mixins": {
-    "SoftDelete" : true,
+    "SoftDelete": true,
     "TimeStamp": true
   },
   "properties": {
     "testId": {
       "type": "number",
-      "required": true
+      "required": true,
+      "title": "Egzamin"
+    },
+    "order": {
+      "type": "number",
+      "required": false,
+      "title": "Kolejność pytania"
+    },
+    "courseScopeId": {
+      "type": "number",
+      "required": false,
+      "title": "Zakres szkolenia"
     },
     "name": {
       "type": "string",
@@ -64,6 +75,12 @@
         "dataScale": null,
         "nullable": "NO"
       }
+    },
+    "maxScore": {
+      "type": "number",
+      "required": false,
+      "title": "Maksymalna ilość punków",
+      "default":1
     },
     "ctlType": {
       "type": "string",
@@ -114,6 +131,11 @@
       "type": "hasMany",
       "model": "userAnswer",
       "foreignKey": "questionId"
+    },
+    "courseScope": {
+      "type": "belongsTo",
+      "model": "courseScope",
+      "foreignKey": "courseScopeId"
     }
   },
   "acls": [

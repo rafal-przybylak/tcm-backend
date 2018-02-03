@@ -8,14 +8,16 @@
     "validateUpsert": true
   },
   "mixins": {
-    "SoftDelete" : true,
+    "SoftDelete": true,
     "TimeStamp": true
   },
   "title": "Kursy",
+  "mssql": {
+    "schema": "dbo",
+    "table": "course"
+  },
   "scope": {
-    "include": [
-      "files"
-    ]
+    "include": []
   },
   "properties": {
     "name": {
@@ -33,9 +35,58 @@
       "required": true,
       "title": "Data zakńczenia"
     },
+    "logoMediaId": {
+      "type": "number",
+      "required": false,
+      "title": "Zjęcie"
+    },
+    "purpose": {
+      "type": "string",
+      "title": "Cel szkolenia",
+      "mssql": {
+        "columnName": "purpose",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
+    },
+    "agenda": {
+      "type": "string",
+      "title": "Program szkolenia",
+      "mssql": {
+        "columnName": "agenda",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
+    },
+    "recipient": {
+      "type": "string",
+      "title": "Dla kogo",
+      "mssql": {
+        "columnName": "recipient",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
+    },
     "desc": {
       "type": "string",
-      "title": "Opis"
+      "title": "Opis",
+      "mssql": {
+        "columnName": "desc",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      }
     },
     "free": {
       "type": "boolean",
@@ -59,10 +110,12 @@
       "through": "userCourse",
       "keyThrough": "userId"
     },
-    "tests": {
+    "trainers": {
       "type": "hasMany",
-      "model": "test",
-      "foreignKey": "courseId"
+      "model": "user",
+      "foreignKey": "courseId",
+      "through": "trainerCourse",
+      "keyThrough": "userId"
     },
     "files": {
       "type": "hasMany",
@@ -71,6 +124,16 @@
         "foreignKey": "refId",
         "discriminator": "refType"
       }
+    },
+    "logoMedia": {
+      "type": "belongsTo",
+      "model": "media",
+      "foreignKey": "logoMediaId"
+    },
+    "courseTests": {
+      "type": "hasMany",
+      "model": "courseTest",
+      "foreignKey": ""
     }
   },
   "acls": [

@@ -1,0 +1,27 @@
+{
+  "name": "trainerCourseScope",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "courseScope": {
+      "type": "belongsTo",
+      "model": "courseScope",
+      "foreignKey": ""
+    },
+    "trainer": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

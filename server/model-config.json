@@ -92,5 +92,25 @@
   "storage": {
     "dataSource": "media",
     "public": true
+  },
+  "courseScope": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "courseTest": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "userCourseTest": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "trainerCourse": {
+    "dataSource": "mssql2008",
+    "public": true
+  },
+  "trainerCourseScope": {
+    "dataSource": "mssql2008",
+    "public": true
   }
 }

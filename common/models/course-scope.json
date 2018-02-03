@@ -1,0 +1,37 @@
+{
+  "name": "courseScope",
+  "description": "Zakres szkolenia|Zakresy szkoleń",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "title": "Nazwa"
+    },
+    "desc": {
+      "type": "string",
+      "title": "Opis"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "trainers": {
+      "type": "hasMany",
+      "model": "user",
+      "foreignKey": "courseScopeId",
+      "through": "trainerCourseScope",
+      "keyThrough": "userId"
+    },
+    "testQuestions": {
+      "type": "hasMany",
+      "model": "testQuestion",
+      "foreignKey": "courseScopeId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

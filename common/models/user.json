@@ -11,7 +11,7 @@
     "subject": "Szkolenia MM Poland - dziękujemy za rejestrację",
     "from": "Szkolenia MM Poland <szkolenia@mmpoland.pl>",
     "type": "email",
-    "template": "D:/Angular/tcm-backend/server/views/verify.ejs",
+    "template": "D:/Angular/tcm-backend/server/views/info.ejs",
     "redirect": "http://localhost:4200/auth-login",
     "host": "localhost",
     "port": "4200",
@@ -47,6 +47,20 @@
       "foreignKey": "userId",
       "through": "userCourse",
       "keyThrough": "courseId"
+    },
+    "trainingCourses": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": "userId",
+      "through": "trainerCourse",
+      "keyThrough": "courseId"
+    },
+    "courseScopes": {
+      "type": "hasMany",
+      "model": "courseScope",
+      "foreignKey": "userId",
+      "through": "trainerCourseScope",
+      "keyThrough": "courseScopeId"
     },
     "userData": {
       "type": "hasOne",

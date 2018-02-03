@@ -1,0 +1,54 @@
+{
+  "name": "courseTest",
+  "description": "Egzamin szkolenia|Egzaminy szkolenia",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "include": [
+    "test"
+  ],
+  "properties": {
+    "courseId": {
+      "type": "number",
+      "required": true,
+      "title": "Szkolenie"
+    },
+    "testId": {
+      "type": "number",
+      "required": true,
+      "title": "Egzamin"
+    },
+    "startDt": {
+      "type": "date",
+      "required": true,
+      "title": "Data rozpoczęcia"
+    },
+    "endDt": {
+      "type": "date",
+      "required": true,
+      "title": "Data zakończenia"
+    },
+    "passingScore": {
+      "type": "number",
+      "required": true,
+      "title": "Zaliczjącz ilość punktów"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "course": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": ""
+    },
+    "test": {
+      "type": "belongsTo",
+      "model": "test",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

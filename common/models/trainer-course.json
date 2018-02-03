@@ -1,0 +1,50 @@
+{
+  "name": "trainerCourse",
+  "description": "Szkolenie/Trener|Szkolenia/Trenerzy",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mssql": {
+    "schema": "dbo",
+    "table": "trainerCourse"
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "course": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": "courseId"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

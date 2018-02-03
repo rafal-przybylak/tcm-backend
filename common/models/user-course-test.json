@@ -1,0 +1,61 @@
+{
+  "name": "userCourseTest",
+  "description": "Egzamin uszestnika|Egzaminy uszestników",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "courseTestId": {
+      "type": "number",
+      "required": true,
+      "title": "Egzamin szkolenia"
+    },
+    "userId": {
+      "type": "number",
+      "required": true,
+      "title": "Uczestnik"
+    },
+    "completeDt": {
+      "type": "date",
+      "title": "Data wykonania testu"
+    },
+    "checkDt": {
+      "type": "date",
+      "title": "Data sprawdzenia testu"
+    },
+    "score": {
+      "type": "number",
+      "title": "Wynik (punkty)"
+    },
+    "scorePercent": {
+      "type": "number",
+      "title": "Wynik (%)"
+    },
+    "passed": {
+      "type": "boolean",
+      "title": "Egzamin zaliczoy (Tak/Nie)"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "userAnswers": {
+      "type": "hasMany",
+      "model": "userAnswer",
+      "foreignKey": ""
+    },
+    "courseTest": {
+      "type": "belongsTo",
+      "model": "courseTest",
+      "foreignKey": "courseTestId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

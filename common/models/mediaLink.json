@@ -2,7 +2,7 @@
   "name": "mediaLink",
   "description": "Załącznik|Załączniki",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
@@ -12,7 +12,6 @@
     ]
   },
   "mixins": {
-    "SoftDelete" : true,
     "TimeStamp": true
   },
   "properties": {},
@@ -31,7 +30,7 @@
         "discriminator": "refType"
       }
     },
-    "node": {
+    "courseFiles": {
       "type": "belongsTo",
       "as": "files",
       "polymorphic": {
