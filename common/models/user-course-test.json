@@ -57,5 +57,31 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "evaluate": {
+      "accepts": [
+        {
+          "arg": "userTestId",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "userTest",
+          "type": "array",
+          "root": true,
+          "description": "Evaluated userTest"
+        }
+      ],
+      "description": "Evaluats user test, set score an so on.",
+      "http": [
+        {
+          "path": "/evaluate",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

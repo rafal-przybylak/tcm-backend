@@ -1,0 +1,2 @@
+Do prawidlowego dzialania miniatur potrzebne jest: ImageMagick-6.9.9-25-portable-Q16-x64
+Przeba dodac wpis do zmiennej path do katalogu  ImageMagick, musi byc podane na poczatku wpisu, bo jest konflikt z innym w "convert.exe" z innym plikiem

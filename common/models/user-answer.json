@@ -20,11 +20,23 @@
       "required": true,
       "title": "Test uczestnika"
     },
-    
     "questionId": {
       "type": "number",
       "required": true,
       "title": "Pytanie"
+    },
+    "questContent": {
+      "type": "string",
+      "required": false,
+      "title": "Treść pytania",
+      "mssql": {
+        "columnName": "questContent",
+        "dataType": "nvarchar",
+        "dataLength": "max",
+        "dataPrecision": null,
+        "dataScale": null
+       
+      }
     },
     "value": {
       "type": [
@@ -50,11 +62,11 @@
       "required": false,
       "title": "Data oceny"
     },
-    "userId": {
+    "trainerId": {
       "type": "number",
       "required": false,
       "title": "Trener oceniający"
-    }, 
+    },
     "score": {
       "type": "number",
       "required": false,
@@ -66,7 +78,7 @@
     "trainer": {
       "type": "belongsTo",
       "model": "user",
-      "foreignKey": "userId"
+      "foreignKey": "trainerId"
     },
     "question": {
       "type": "belongsTo",

@@ -1,0 +1,80 @@
+{
+  "name": "courseCandidate",
+  "description": "Kandydat na szkolenie|Kandydaci na szkolenia",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SoftDelete": true,
+    "TimeStamp": true
+  },
+  "properties": {
+    "userId": {
+      "type": "number",
+      "required": true
+    },
+    "courseId": {
+      "type": "number",
+      "required": true
+    },
+    "requestDt": {
+      "type": "date",
+      "required": true,
+      "title": "Data zgłoszenia"
+    },
+    "desc": {
+      "type": "string",
+      "title": "Informacja dla organizatora (opcjonalnie)"
+    },
+    "cancelledDt": {
+      "type": "date",
+      "title": "Data rezygnacji "
+    },
+    "cancelledInfo": {
+      "type": "string",
+      "title": "Powód anulowania zgłoszenia"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "course": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": ""
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "administrator",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

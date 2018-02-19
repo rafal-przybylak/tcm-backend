@@ -112,5 +112,9 @@
   "trainerCourseScope": {
     "dataSource": "mssql2008",
     "public": true
+  },
+  "courseCandidate": {
+    "dataSource": "mssql2008",
+    "public": true
   }
 }

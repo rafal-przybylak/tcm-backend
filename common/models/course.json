@@ -99,6 +99,10 @@
     "goelocLong": {
       "type": "number",
       "title": "Długość geograficzna"
+    },
+    "fundingEU": {
+      "type": "boolean",
+      "title": "Finansowanie EU"
     }
   },
   "validations": [],
@@ -133,6 +137,11 @@
     "courseTests": {
       "type": "hasMany",
       "model": "courseTest",
+      "foreignKey": ""
+    },
+    "candidates": {
+      "type": "hasMany",
+      "model": "courseCandidate",
       "foreignKey": ""
     }
   },

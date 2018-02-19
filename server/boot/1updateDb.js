@@ -5,12 +5,9 @@ module.exports = function(app) {
     //     if(err) return console.log(err);
     //     console.log('Models created: \n');
     // });  
-    // app.dataSources.mssql2008.autoupdate(['user','AccessToken','ACL','Role','course','userCourse','userData','test','testQuestion','userAnswer',    'courseScope','trainerCourse','courseTest','userCourseTest','trainerCourseScope']
-    // , function(err) {
-    //   if (err) throw err;
-  
-      
-    //     console.log('Models updated: \n');
-     
-    //  });
+    app.dataSources.mssql2008.autoupdate(['user','AccessToken','ACL','Role','course','userCourse','userData','test','testQuestion','userAnswer',    'courseScope','trainerCourse','courseTest','userCourseTest','trainerCourseScope','courseCandidate']
+    , function(err) {
+      if (err) throw err;
+        console.log('Models updated: \n');
+     });
   };

@@ -45,7 +45,7 @@
       "paths": [
         "/media/public"
       ],
-      "params": "$!../server/storage/data1/"
+      "params": "$!../storage/public/"
     }
   },
   "final": {

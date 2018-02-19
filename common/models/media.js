@@ -24,6 +24,7 @@ module.exports = function (Media) {
                         if (item.originalFilename !== "undefined") {
                             delete item.originalFilename;
                         }
+                        item.size=item.size/1024;
                         mediaFiles.push(item);
                     });
                 }

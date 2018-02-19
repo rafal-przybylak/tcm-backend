@@ -8,7 +8,7 @@
     "validateUpsert": true
   },
   "verifyOptions": {
-    "subject": "Szkolenia MM Poland - dziękujemy za rejestrację",
+    "subject": "WAŻNE!! Szkolenia MM Poland - test po szkoleniu",
     "from": "Szkolenia MM Poland <szkolenia@mmpoland.pl>",
     "type": "email",
     "template": "D:/Angular/tcm-backend/server/views/info.ejs",
@@ -20,7 +20,8 @@
   "scope": {
     "include": [
       "roles",
-      "avatar"
+      "avatar",
+      "courseScopes"
     ]
   },
   "properties": {
@@ -58,7 +59,7 @@
     "courseScopes": {
       "type": "hasMany",
       "model": "courseScope",
-      "foreignKey": "userId",
+      "foreignKey": "trainerId",
       "through": "trainerCourseScope",
       "keyThrough": "courseScopeId"
     },
@@ -67,9 +68,14 @@
       "model": "userData",
       "foreignKey": "userId"
     },
-    "userAnswers": {
+    "evaluatedUserAnswers": {
       "type": "hasMany",
       "model": "userAnswer",
+      "foreignKey": "trainerId"
+    },
+    "userCourseTests": {
+      "type": "hasMany",
+      "model": "userCourseTest",
       "foreignKey": "userId"
     },
     "roles": {
@@ -92,6 +98,11 @@
         "discriminator": "refType"
       },
       "through": "mediaLink"
+    },
+    "courseApplications": {
+      "type": "hasMany",
+      "model": "courseCandidate",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -137,6 +148,33 @@
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "userRoles"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "trainer",
+      "permission": "ALLOW",
+      "property": [
+        "userRoles"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "user",
+      "permission": "ALLOW",
+      "property": [
+        "userRoles"
+      ]
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "administrator",
       "permission": "ALLOW",
       "property": [
         "userRoles"

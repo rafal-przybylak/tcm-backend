@@ -20,6 +20,11 @@
       "required": true,
       "title": "Egzamin"
     },
+    "name": {
+      "type": "string",
+      "required": true,
+      "title": "Nazwa"
+    },
     "startDt": {
       "type": "date",
       "required": true,
@@ -47,6 +52,11 @@
       "type": "belongsTo",
       "model": "test",
       "foreignKey": ""
+    },
+    "userCourseTests": {
+      "type": "hasMany",
+      "model": "userCourseTest",
+      "foreignKey": "courseTestId"
     }
   },
   "acls": [],
