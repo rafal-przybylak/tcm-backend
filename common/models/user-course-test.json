@@ -82,6 +82,31 @@
           "verb": "get"
         }
       ]
+    },
+    "sendEvaluateMessage": {
+      "accepts": [
+        {
+          "arg": "userTestId",
+          "type": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "sentMessages",
+          "type": "array",
+          "root": true,
+          "description": "Evaluated userTest"
+        }
+      ],
+      "description": "Sends evaluat e-mail messages to test users.",
+      "http": [
+        {
+          "path": "/send-valuate-message",
+          "verb": "get"
+        }
+      ]
     }
   }
 }

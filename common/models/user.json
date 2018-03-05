@@ -3,6 +3,7 @@
   "description": "Użytkownik|Użytkownicy",
   "plural": "users",
   "base": "User",
+  "emailVerificationRequired": true,
   "idInjection": true,
   "options": {
     "validateUpsert": true
