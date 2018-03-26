@@ -1,0 +1,15 @@
+ var method= sharedMethod.name.split("__");
+    
+      aclModel.checkAccessForContext({
+      accessToken: token,
+      model: method.length==3?self.app.models[sharedMethod.returns[0].type] : this,
+      property: method.length==3?method[1]: sharedMethod.name,
+      method:method.length==3?method[1]: sharedMethod.name,
+      sharedMethod: sharedMethod,
+      modelId: modelId,
+      accessType: this._getAccessTypeForMethod(sharedMethod),
+      remotingContext: ctx,
+    }, function(err, accessRequest) {
+      if (err) return callback(err);
+      callback(null, accessRequest.isAllowed());
+    });

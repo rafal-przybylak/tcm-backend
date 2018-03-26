@@ -1,7 +1,11 @@
 'use strict';
 
 module.exports = function(CourseTest) {
-
+    CourseTest.createOptionsFromRemotingContext = function (ctx) {
+        var base = this.base.createOptionsFromRemotingContext(ctx)
+        base.ctx = ctx.req
+        return base
+      }
     CourseTest.observe('before delete', function (ctx, next) {
 
         CourseTest.beginTransaction('READ COMMITTED', async function (err, tx) {

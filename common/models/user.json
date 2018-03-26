@@ -12,10 +12,10 @@
     "subject": "WAŻNE!! Szkolenia MM Poland - test po szkoleniu",
     "from": "Szkolenia MM Poland <szkolenia@mmpoland.pl>",
     "type": "email",
-    "template": "D:/Angular/tcm-backend/server/views/info.ejs",
-    "redirect": "http://localhost:4200/auth-login",
-    "host": "localhost",
-    "port": "4200",
+    "template": "info.ejs",
+    "redirect": "http://mmewidencja.pl/tcm/auth-login",
+    "host": "mmewidencja.pl/tcm",
+    "port": "80",
     "urlPath": "/auth-mail-confirm"
   },
   "scope": {

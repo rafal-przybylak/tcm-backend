@@ -81,22 +81,19 @@ module.exports = function (User) {
       subject: "Witamy w systemie szkoleń MM Poland",
       from: "Szkolenia MM Poland <szkolenia@mmpoland.pl>",
       type: "email",
-      template: path.join(__dirname, "..", "..", "server", "views", "verify.ejs"),
+      template:  "verify.ejs",
       redirect: "http://mmewidencja.pl/tcm/auth-login",
       host: "mmewidencja.pl/tcm",
       port: "80",
       urlPath: "/auth-mail-confirm"
     };
-    console.log(options.template);
+
     if (!context.args.options.accessToken) {
       user.verify(options, function (err, response) {
         if (err) {
-          console.log('> create user =- after22');
           User.deleteById(user.id);
           return next(err);
         }
-        console.log('> create user =- after3');
-
         next();
       });
     } else {
@@ -175,8 +172,9 @@ module.exports = function (User) {
 
     var pkName = userModel.definition.idName() || 'id';
     verifyOptions.redirect = verifyOptions.redirect || '/';
-    var defaultTemplate = path.join(__dirname, '..', '..', 'templates', 'verify.ejs');
-    verifyOptions.template = path.resolve(verifyOptions.template || defaultTemplate);
+    var defaultTemplate ='verify.ejs';
+    verifyOptions.template =verifyOptions.template || defaultTemplate;
+    verifyOptions.template= path.join(__dirname, "..", "..", "server", "views", verifyOptions.template);
     verifyOptions.user = user;
     verifyOptions.protocol = verifyOptions.protocol || 'http';
 

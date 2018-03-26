@@ -4,7 +4,10 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
-
+// app.use('/\*', function (req, res, next) {
+//   console.log("logowanie dla każdego wywołania API");
+//   return next();
+// });
 app.start = function() {
   // start the web server
  
