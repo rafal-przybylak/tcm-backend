@@ -72,7 +72,7 @@ module.exports = function (Usercoursetest) {
                 options.to = element.user.email;
                 var template = loopback.template(path.join(__dirname, "..", "..", "server", "views", "test_evaluation.ejs"));
                 var body = template(options);
-
+                //loopCallback();
                 setHtmlContentAndSend(options, body, sentArray, loopCallback);
 
             }, err => {
@@ -119,11 +119,16 @@ module.exports = function (Usercoursetest) {
         delete options.template;
         var Email = options.email;
         if (Email.send.length == 3) {
-            setTimeout(() => { return Email.send(options, {}, handleAfterSend); }, 3000);
+            setTimeout(() => { return Email.send(options, {}, handleAfterSend); }, 1000);
         } else {
-            setTimeout(() => { return Email.send(options, handleAfterSend); }, 3000);
+            setTimeout(() => { return Email.send(options, handleAfterSend); }, 1000);
         }
 
+        // if (Email.send.length == 3) {
+        //     setTimeout(() => { return  handleAfterSend(null,null); }, 3000);
+        // } else {
+        //     setTimeout(() => { return handleAfterSend(null,null); }, 3000);
+        // }
         function handleAfterSend(err, email) {
 
             sentArray.push({ sentError: err, sentData: options, scorePercent: options.wynikProcent, passed: options.passed });

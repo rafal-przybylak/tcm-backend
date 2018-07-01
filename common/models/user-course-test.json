@@ -58,14 +58,14 @@
   },
   "acls": [
       {
-        "principalType": "ROLE",
+        "principalType": "CREATE",
         "principalId": "$everyone",
         "permission": "DENY"
       },
       {
-        "accessType": "*",
+        "accessType": "READ",
         "principalType": "ROLE",
-        "principalId": "$authenticated",
+        "principalId": "trainer",
         "permission": "ALLOW"
       },
       {
@@ -74,7 +74,6 @@
         "principalId": "administrator",
         "permission": "ALLOW"
       }
-         
   
   ],
   "methods": {
