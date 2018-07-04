@@ -87,7 +87,7 @@ module.exports = function (Media) {
 
         var indexValue = imagesFileTypes.indexOf(media.type);
         if (indexValue != -1) {
-            var file_path = "./server/storage/" + media.container + "/" + media.name;
+            var file_path = "./storage/" + media.container + "/" + media.name;
 
 
             if (typeof app.settings.storage.createThumbnails !== "undefined" && app.settings.storage.createThumbnails !== null) {
@@ -98,7 +98,7 @@ module.exports = function (Media) {
                 sizes.forEach(function (options) {
 
                     var width = options.width;
-                    var file_thumb_path = "./server/storage/" + media.container + "/thumbnail_" + width + "/" + media.name;
+                    var file_thumb_path = "./storage/" + media.container + "/thumbnail_" + width + "/" + media.name;
 
                     console.log(file_thumb_path);
                     var opt = {
